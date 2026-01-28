@@ -58,12 +58,13 @@ img {
 ------------*/
 .home-content {
     text-align: center;
-    margin-top: 20%;
+    margin-top: 15%; /* スマホで見やすいように少し調整 */
 }
 .home-content p {
     font-size: 1.125rem;
     margin: 10px 0 42px;
     font-weight: bold;
+    text-shadow: 1px 1px 5px rgba(255,255,255,0.8); /* 文字が見やすいように影を追加 */
 }
 
 /* 見出し */
@@ -102,46 +103,72 @@ img {
     text-transform: none;
 }
 
-/*メインページの配置*/
+/* お知らせリスト (トップページ追加用) */
+.news-list {
+    list-style: none;
+    padding: 0;
+    margin: 20px auto;
+    max-width: 800px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.news-list li {
+    padding: 15px 20px;
+    border-bottom: 1px solid #eee;
+    font-size: 1rem;
+}
+.news-list li:last-child {
+    border-bottom: none;
+}
+
+/*メインページの配置 (History) */
 #second {
     background-image: url(../images/mainback.png);
+    background-size: contain; /* 背景画像の調整 */
+    padding-bottom: 50px;
 }
 .home-history {
-    width: 80%;
+    width: 90%; /* 幅を広めに */
     max-width: 1000px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 20px 0;
 }
-.home-history aside2 {
-    display: flex;
-    align-items: center;
-    padding-left: 10%;
-    padding-top: 30px;
-}
-.home-history aside2 img {
-    margin-right: 20px;
-    max-width: 100px;
-}
-.home-history aside2 p {
-    max-width: 500px;
-}
+
+/* aside2, aside3 (PC用レイアウト) */
+.home-history aside2,
 .home-history aside3 {
     display: flex;
     align-items: center;
-    padding-left: 15%;
-    padding-top: 20px;
-    padding-bottom: 30px;
+    padding: 30px 0;
+    margin-bottom: 20px;
 }
-.home-history aside3 img {
-    margin-right: 20px;
-    max-width: 250px;
+/* 奇数・偶数で配置を変える余白調整 */
+.home-history aside2 {
+    padding-left: 5%;
 }
-.home-history aside3 p {
-    max-width: 500px;
+.home-history aside3 {
+    padding-left: 10%;
 }
 
-/* NEWS & CONTACT HEADER
-------------------------------*/
+.home-history aside2 img,
+.home-history aside3 img {
+    margin-right: 30px;
+    max-width: 300px; /* 画像が大きくなりすぎないように制限 */
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+.home-history aside2 p,
+.home-history aside3 p {
+    flex: 1; /* 文章が残りの幅を使う */
+    max-width: 600px;
+    background: rgba(255,255,255,0.8); /* 文字が読みやすいように背景薄く */
+    padding: 15px;
+    border-radius: 4px;
+}
+
+
+/* NEWS & CONTACT レイアウト (共通) */
 #news {
     background-image: url(../images/yaki.jpg), linear-gradient(#ffffff, #444444);
     height: 270px;
@@ -161,48 +188,40 @@ img {
     margin-bottom: 20px;
 }
 
-
-/* 記事レイアウト（ここを修正：中央寄せに変更）
-------------------------------*/
 .news-contents {
     display: flex;
-    justify-content: center; /* 記事とサイドバーを画面中央に寄せる */
-    gap: 60px;               /* 記事とサイドバーの間隔 */
+    justify-content: center;
+    gap: 60px;
     margin-bottom: 50px;
     align-items: flex-start;
 }
 
-/* メイン記事エリア */
 article {
-    width: 65%;             /* 幅を少し抑えて中央感を出す */
-    max-width: 700px;       /* 読みやすい最大幅を設定 */
+    width: 65%;
+    max-width: 700px;
 }
-
-/* 記事内の画像を中央に配置 */
 article img {
     margin-bottom: 20px;
-    display: block;         /* ブロック要素にする */
-    margin-left: auto;      /* 左余白自動 */
-    margin-right: auto;     /* 右余白自動 */
-    border-radius: 4px;     /* 少し角を丸くして上品に */
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 4px;
 }
-
 article p {
     margin-bottom: 1.5rem;
 }
 
-
-/* サイドバー（広告・メニュー） */
 aside {
-    width: 25%;             /* 小さめに */
-    max-width: 280px;       /* 広がりすぎないように制限 */
+    width: 25%;
+    max-width: 280px;
 }
 
+/* Post Info */
 .post-info {
     position: relative;
     padding-top: 4px;
     margin-bottom: 40px;
-    text-align: center;     /* タイトル周りも中央寄せ */
+    text-align: center;
 }
 .post-date {
     background: #0bd;
@@ -214,7 +233,7 @@ aside {
     text-align: center;
     position: absolute;
     top: 0;
-    left: 0;                /* 日付は左上に固定 */
+    left: 0;
     padding-top: 10px;
 }
 .post-date span {
@@ -229,8 +248,8 @@ aside {
     font-family: "Yu Mincho", "YUMincho", serif;
     font-size: 2rem;
     font-weight: normal;
-    margin-left: 120px;     /* 日付アイコンの分だけずらす */
-    text-align: left;       /* タイトルは左揃え */
+    margin-left: 120px;
+    text-align: left;
 }
 .post-cat {
     margin-left: 120px;
@@ -240,7 +259,7 @@ aside {
     color: #777;
 }
 
-/* サイドバー内の装飾 */
+/* サイドバー装飾 */
 .sub-title {
     font-size: 1.25rem;
     padding: 0 8px 8px;
@@ -264,11 +283,6 @@ aside {
 .sub-menu a:hover {
     color: #0bd;
 }
-.aside p {
-    font-size: 0.9rem;
-}
-
-/* 広告バナー */
 .ad {
     margin-top: 20px;
     text-align: center;
@@ -276,13 +290,13 @@ aside {
 .ad img {
     border-radius: 5px;
     transition: opacity 0.3s;
-    width: 100%; /* サイドバーの幅いっぱいに */
+    width: 100%;
 }
 .ad img:hover {
     opacity: 0.8;
 }
 
-/* ローディングアニメーション */
+/* ローディング */
 .loader {
     border: 3px solid #f3f3f3;
     border-top: 3px solid #0bd;
@@ -299,8 +313,7 @@ aside {
     100% { transform: rotate(360deg); }
 }
 
-/*フッター
-------------------*/
+/*フッター*/
 footer {
     background-color: #432;
     text-align: center;
@@ -310,97 +323,102 @@ footer p {
     color: #fff;
     font-size: 0.875rem;
 }
-@media (max-width: 600px) {
-    h1 {
-        color: #0bd;
-    }
-}
 
-/*==モバイル版（スマホ）
-===============================*/
-@media screen and (max-width: 1000px) {
+/*==============================================
+  スマホ・タブレット版 (レスポンシブ対応)
+  ここを強化して見やすくしました
+==============================================*/
+@media screen and (max-width: 900px) {
+    /* 共通レイアウト */
     .page-title {
         font-size: 2.5rem;
     }
-    .home-content p {
-        font-size: 1rem;
-        margin-bottom: 40px;
+    .wrapper {
+        padding: 0 20px;
     }
-    .button {
-        font-size: 1.2rem;
-    }
-    
+
     /* HEADER */
-    .main-nav {
-        font-size: 1rem;
-        margin-top: 10px;
+    .page-header {
+        flex-direction: column;
+        align-items: center;
+        padding-top: 10px;
     }
     .logo {
-        width: 65%;
-        margin-top: 20px;
+        width: 180px; /* ロゴサイズ調整 */
+        margin-top: 10px;
+        margin-bottom: 0;
+    }
+    .main-nav {
+        font-size: 0.9rem;
+        margin-top: 15px;
+        flex-wrap: wrap; /* メニューが折り返せるように */
+        justify-content: center;
     }
     .main-nav li {
         margin: 0 10px;
     }
-    .page-header {
-        flex-direction: column;
-        align-items: center;
-    }
-    .page-header.wrapper {
-        padding-top: 10px;
-    }
 
     /* HOME */
     .home-content {
-        margin-top: 100px;
+        margin-top: 120px;
     }
-    .home-content.wrapper {
-        margin-top: 100px;
+    .home-content p {
+        font-size: 1rem;
+        margin-bottom: 30px;
+        padding: 0 10px; /* 文字が端にくっつかないように */
+    }
+    .button {
+        font-size: 1.1rem;
+        padding: 12px 24px;
     }
 
-    /* NEWS & CONTACT (スマホ調整) */
-    #news {
-        height: auto;
-        min-height: 250px;
-        padding-bottom: 20px;
-    }
-    #news .page-title {
-        font-size: 2.5rem;
-        color: #ffffff;
-        margin-top: 10px;
-        margin-bottom: 10px;
-    }
-    #news .main-nav {
-        color: #ffffff;
-        font-size: 1rem;
-        margin-top: 0;
-    }
-    #news .main-nav a {
-        color: #ffffff;
+    /* 歴史・記事部分の縦並び化 (ここが重要！) */
+    .home-history aside2,
+    .home-history aside3 {
+        flex-direction: column; /* 縦並びにする */
+        padding: 0;
+        margin-bottom: 50px;
+        text-align: center; /* 中央揃え */
     }
     
-    /* スマホでは縦並びに戻す */
+    .home-history aside2 img,
+    .home-history aside3 img {
+        margin: 0 0 20px 0; /* 下に余白を作る */
+        max-width: 80%; /* 画面いっぱいになりすぎないように */
+        width: auto;
+    }
+    
+    .home-history aside2 p,
+    .home-history aside3 p {
+        width: 100%;
+        max-width: 100%;
+        text-align: left; /* 文章は左揃えで読みやすく */
+        padding: 15px;
+        box-sizing: border-box;
+    }
+
+    /* NEWS & CONTACT ページ調整 */
     .news-contents {
         flex-direction: column;
-        gap: 0; /* 隙間リセット */
+        gap: 0;
     }
     article,
     aside {
-        width: 100%; /* 幅いっぱい */
+        width: 100%;
         max-width: none;
     }
-    
-    /* 広告とサイドバーの位置調整 */
     aside {
-        margin-top: 60px;
-        order: 3; /* 一番下に */
-    }
-    .ad {
-        margin-top: 40px;
+        order: 3;
+        margin-top: 50px;
     }
     
-    .post-info {
-        margin-bottom: 30px;
+    /* Post Info (スマホ用) */
+    .post-title {
+        font-size: 1.4rem;
+        margin-left: 90px; /* 日付アイコンとの距離調整 */
+    }
+    .post-cat {
+        margin-left: 90px;
     }
     .post-date {
         width: 70px;
@@ -408,82 +426,7 @@ footer p {
         font-size: 1rem;
     }
     .post-date span {
-        font-size: 0.875rem;
+        font-size: 0.8rem;
         padding-top: 2px;
-    }
-    .post-title {
-        font-size: 1.375rem;
-        margin-left: 80px;
-    }
-    .post-cat {
-        font-size: 0.875rem;
-        margin-top: 10px;
-        margin-left: 80px;
-    }
-    .footer-main {
-        display: none;
-    }
-}
-
-/* RECRUIT (新歓ページ用)
-------------------------------*/
-.recruit-section {
-    margin-bottom: 80px;
-}
-.recruit-title {
-    font-size: 2rem;
-    text-align: center;
-    margin-bottom: 40px;
-    color: #0bd;
-    font-weight: bold;
-}
-.recruit-grid {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 20px;
-}
-.recruit-card {
-    background: #f9f9f9;
-    padding: 30px;
-    border-radius: 8px;
-    width: 31%;
-    box-shadow: 0 3px 6px rgba(0,0,0,0.05);
-}
-.recruit-card h3 {
-    font-size: 1.25rem;
-    margin-bottom: 15px;
-    border-bottom: 2px solid #0bd;
-    display: inline-block;
-}
-.recruit-schedule dl {
-    display: flex;
-    flex-wrap: wrap;
-    border-top: 1px solid #ddd;
-}
-.recruit-schedule dt {
-    width: 20%;
-    border-bottom: 1px solid #ddd;
-    padding: 15px;
-    font-weight: bold;
-    background: #eef;
-}
-.recruit-schedule dd {
-    width: 80%;
-    border-bottom: 1px solid #ddd;
-    padding: 15px;
-}
-@media screen and (max-width: 768px) {
-    .recruit-card {
-        width: 100%;
-        margin-bottom: 20px;
-    }
-    .recruit-schedule dt, .recruit-schedule dd {
-        width: 100%;
-        display: block;
-    }
-    .recruit-schedule dt {
-        border-bottom: none;
-        background: #f4f4f4;
     }
 }
