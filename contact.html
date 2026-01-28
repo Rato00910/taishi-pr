@@ -8,32 +8,6 @@
         <link href="https://fonts.googleapis.com/css?family=Philosopher" rel="stylesheet">
         <link href="css/style.css" rel="stylesheet">
         <link rel="icon" type="image/png" href="images/favicon.png">
-        
-        <style>
-            /* ローディングアイコン */
-            .loader {
-                border: 3px solid #f3f3f3;
-                border-top: 3px solid #0bd;
-                border-radius: 50%;
-                width: 1em;
-                height: 1em;
-                animation: spin 1s linear infinite;
-                display: inline-block;
-                vertical-align: middle;
-                margin-right: 10px;
-            }
-            @keyframes spin {
-                0% { transform: rotate(0deg); }
-                100% { transform: rotate(360deg); }
-            }
-            /* 画像がはみ出さないように調整 */
-            .post-info img {
-                max-width: 100%;
-                height: auto;
-                display: block; /* 画像の下に余白ができるのを防ぐ */
-                margin-bottom: 20px; /* 画像の下に余白を追加 */
-            }
-        </style>
     </head>
 
     <body>
@@ -92,11 +66,11 @@
                 <p>
                     「タイ志を、まとえ。」は、情報学部の学生だけで構成された模擬店運営チームです。ITとたい焼きの融合を目指しています。
                 </p>
-            </aside>
 
-            <div class="ad">
-                <a href="recruit.html"><img src="images/banner.png" alt="新メンバー募集中"></a>
-            </div>
+                <div class="ad">
+                    <a href="recruit.html"><img src="images/banner.png" alt="新メンバー募集中"></a>
+                </div>
+            </aside>
         </div>
 
         <footer>
@@ -106,7 +80,7 @@
         </footer>
 
         <script>
-            // あなたのGoogleスプレッドシートCSV URL
+            // スプレッドシート読み込み用スクリプト
             const sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS1Fb8RzmdXe2qcznzzYbsYZ5uJLFuwE-BH7zk4jspvbajB8WL8cLa7Ikbbmv1aO_HqNrbnDrsb1tSy/pub?gid=0&single=true&output=csv';
 
             fetch(sheetUrl)
