@@ -20,6 +20,11 @@ img {
     vertical-align: bottom;
 }
 
+/* カスタムタグの定義 (崩れ防止) */
+aside2, aside3 {
+    display: block;
+}
+
 /*HEADER
 ----------------*/
 .logo {
@@ -149,15 +154,15 @@ img {
     padding-left: 10%;
 }
 
-/* ★★★ アイコン画像サイズの修正箇所 ★★★ */
+/* PCでのアイコン設定 */
 .home-history aside2 img,
 .home-history aside3 img {
     margin-right: 30px;
-    width: 140px; /* PCでは140pxに固定 */
+    width: 140px; /* PCサイズ */
     height: auto;
     border-radius: 4px;
-    /* 影をつけて少しリッチに */
     filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2)); 
+    flex-shrink: 0; /* 潰れないようにする */
 }
 
 .home-history aside2 p,
@@ -168,7 +173,6 @@ img {
     padding: 15px;
     border-radius: 4px;
 }
-
 
 /* NEWS & CONTACT レイアウト */
 #news {
@@ -326,10 +330,9 @@ footer p {
     font-size: 0.875rem;
 }
 
-/* RECRUITページ専用スタイル (ここを追加・強化)
-------------------------------*/
+/* RECRUITページスタイル (PC用) */
 #recruit-hero {
-    background-image: url(../images/yaki.jpg); /* 背景画像 */
+    background-image: url(../images/yaki.jpg);
     background-size: cover;
     background-position: center;
     height: 400px;
@@ -338,12 +341,13 @@ footer p {
     justify-content: center;
     position: relative;
     color: #fff;
+    margin-bottom: 60px;
 }
 #recruit-hero::before {
     content: '';
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(0,0,0,0.4); /* 写真を少し暗くして文字を見やすく */
+    background: rgba(0,0,0,0.4);
     z-index: 1;
 }
 #recruit-hero .page-header {
@@ -356,6 +360,8 @@ footer p {
     position: relative;
     z-index: 5;
     text-shadow: 0 0 10px rgba(0,0,0,0.5);
+    color: #fff;
+    margin-top: 60px; /* PCでの位置調整 */
 }
 
 .recruit-section {
@@ -408,9 +414,9 @@ footer p {
 
 /*==============================================
   スマホ・タブレット版 (レスポンシブ対応)
+  ★ここですべての崩れを修正します★
 ==============================================*/
 @media screen and (max-width: 900px) {
-    /* 共通レイアウト */
     .page-title {
         font-size: 2.5rem;
     }
@@ -453,19 +459,20 @@ footer p {
         padding: 12px 24px;
     }
 
-    /* ★★★ アイコン画像修正 (スマホ用) ★★★ */
+    /* ★★★ アイコン画像の修正箇所 ★★★ */
     .home-history aside2,
     .home-history aside3 {
-        flex-direction: column;
+        flex-direction: column; /* 縦並び */
         padding: 0;
         margin-bottom: 50px;
         text-align: center;
+        width: 100%; /* 横幅いっぱい */
     }
     .home-history aside2 img,
     .home-history aside3 img {
-        margin: 0 0 20px 0;
-        width: 120px; /* スマホでは120pxに固定 */
-        max-width: none;
+        margin: 0 auto 20px auto; /* 中央揃え */
+        width: 100px !important; /* ★強制的に100pxにする */
+        max-width: 100px;
     }
     .home-history aside2 p,
     .home-history aside3 p {
@@ -507,22 +514,29 @@ footer p {
         padding-top: 2px;
     }
 
-    /* RECRUITページ スマホ対応 (ここを追加) */
+    /* RECRUITページ スマホ対応修正 */
     #recruit-hero {
-        height: 300px; /* 高さを少し低く */
+        height: 300px;
     }
-    /* 3列カードを1列に */
+    #recruit-hero .page-title {
+        margin-top: 100px; /* スマホでの位置調整 */
+    }
+    .recruit-grid {
+        display: block; /* 縦並び */
+    }
     .recruit-card {
         width: 100%;
         margin-bottom: 20px;
+        box-sizing: border-box;
     }
-    /* スケジュール表を縦並びに */
     .recruit-schedule dt, .recruit-schedule dd {
         width: 100%;
         display: block;
+        box-sizing: border-box;
     }
     .recruit-schedule dt {
         border-bottom: none;
         background: #f4f4f4;
+        margin-top: 10px;
     }
 }
