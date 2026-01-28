@@ -58,13 +58,13 @@ img {
 ------------*/
 .home-content {
     text-align: center;
-    margin-top: 15%; /* スマホで見やすいように少し調整 */
+    margin-top: 15%;
 }
 .home-content p {
     font-size: 1.125rem;
     margin: 10px 0 42px;
     font-weight: bold;
-    text-shadow: 1px 1px 5px rgba(255,255,255,0.8); /* 文字が見やすいように影を追加 */
+    text-shadow: 1px 1px 5px rgba(255,255,255,0.8);
 }
 
 /* 見出し */
@@ -103,7 +103,7 @@ img {
     text-transform: none;
 }
 
-/* お知らせリスト (トップページ追加用) */
+/* お知らせリスト */
 .news-list {
     list-style: none;
     padding: 0;
@@ -125,17 +125,16 @@ img {
 /*メインページの配置 (History) */
 #second {
     background-image: url(../images/mainback.png);
-    background-size: contain; /* 背景画像の調整 */
+    background-size: contain;
     padding-bottom: 50px;
 }
 .home-history {
-    width: 90%; /* 幅を広めに */
+    width: 90%;
     max-width: 1000px;
     margin: 0 auto;
     padding: 20px 0;
 }
 
-/* aside2, aside3 (PC用レイアウト) */
 .home-history aside2,
 .home-history aside3 {
     display: flex;
@@ -143,7 +142,6 @@ img {
     padding: 30px 0;
     margin-bottom: 20px;
 }
-/* 奇数・偶数で配置を変える余白調整 */
 .home-history aside2 {
     padding-left: 5%;
 }
@@ -151,24 +149,28 @@ img {
     padding-left: 10%;
 }
 
+/* ★★★ アイコン画像サイズの修正箇所 ★★★ */
 .home-history aside2 img,
 .home-history aside3 img {
     margin-right: 30px;
-    max-width: 300px; /* 画像が大きくなりすぎないように制限 */
+    width: 140px; /* PCでは140pxに固定 */
+    height: auto;
     border-radius: 4px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    /* 影をつけて少しリッチに */
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2)); 
 }
+
 .home-history aside2 p,
 .home-history aside3 p {
-    flex: 1; /* 文章が残りの幅を使う */
+    flex: 1;
     max-width: 600px;
-    background: rgba(255,255,255,0.8); /* 文字が読みやすいように背景薄く */
+    background: rgba(255,255,255,0.8);
     padding: 15px;
     border-radius: 4px;
 }
 
 
-/* NEWS & CONTACT レイアウト (共通) */
+/* NEWS & CONTACT レイアウト */
 #news {
     background-image: url(../images/yaki.jpg), linear-gradient(#ffffff, #444444);
     height: 270px;
@@ -324,9 +326,88 @@ footer p {
     font-size: 0.875rem;
 }
 
+/* RECRUITページ専用スタイル (ここを追加・強化)
+------------------------------*/
+#recruit-hero {
+    background-image: url(../images/yaki.jpg); /* 背景画像 */
+    background-size: cover;
+    background-position: center;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    color: #fff;
+}
+#recruit-hero::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.4); /* 写真を少し暗くして文字を見やすく */
+    z-index: 1;
+}
+#recruit-hero .page-header {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+}
+#recruit-hero .page-title {
+    position: relative;
+    z-index: 5;
+    text-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.recruit-section {
+    margin-bottom: 80px;
+}
+.recruit-title {
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 40px;
+    color: #0bd;
+    font-weight: bold;
+}
+.recruit-grid {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.recruit-card {
+    background: #f9f9f9;
+    padding: 30px;
+    border-radius: 8px;
+    width: 31%;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.05);
+}
+.recruit-card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #0bd;
+    display: inline-block;
+}
+.recruit-schedule dl {
+    display: flex;
+    flex-wrap: wrap;
+    border-top: 1px solid #ddd;
+}
+.recruit-schedule dt {
+    width: 20%;
+    border-bottom: 1px solid #ddd;
+    padding: 15px;
+    font-weight: bold;
+    background: #eef;
+}
+.recruit-schedule dd {
+    width: 80%;
+    border-bottom: 1px solid #ddd;
+    padding: 15px;
+}
+
+
 /*==============================================
   スマホ・タブレット版 (レスポンシブ対応)
-  ここを強化して見やすくしました
 ==============================================*/
 @media screen and (max-width: 900px) {
     /* 共通レイアウト */
@@ -344,14 +425,14 @@ footer p {
         padding-top: 10px;
     }
     .logo {
-        width: 180px; /* ロゴサイズ調整 */
+        width: 180px;
         margin-top: 10px;
         margin-bottom: 0;
     }
     .main-nav {
         font-size: 0.9rem;
         margin-top: 15px;
-        flex-wrap: wrap; /* メニューが折り返せるように */
+        flex-wrap: wrap;
         justify-content: center;
     }
     .main-nav li {
@@ -365,39 +446,37 @@ footer p {
     .home-content p {
         font-size: 1rem;
         margin-bottom: 30px;
-        padding: 0 10px; /* 文字が端にくっつかないように */
+        padding: 0 10px;
     }
     .button {
         font-size: 1.1rem;
         padding: 12px 24px;
     }
 
-    /* 歴史・記事部分の縦並び化 (ここが重要！) */
+    /* ★★★ アイコン画像修正 (スマホ用) ★★★ */
     .home-history aside2,
     .home-history aside3 {
-        flex-direction: column; /* 縦並びにする */
+        flex-direction: column;
         padding: 0;
         margin-bottom: 50px;
-        text-align: center; /* 中央揃え */
+        text-align: center;
     }
-    
     .home-history aside2 img,
     .home-history aside3 img {
-        margin: 0 0 20px 0; /* 下に余白を作る */
-        max-width: 80%; /* 画面いっぱいになりすぎないように */
-        width: auto;
+        margin: 0 0 20px 0;
+        width: 120px; /* スマホでは120pxに固定 */
+        max-width: none;
     }
-    
     .home-history aside2 p,
     .home-history aside3 p {
         width: 100%;
         max-width: 100%;
-        text-align: left; /* 文章は左揃えで読みやすく */
+        text-align: left;
         padding: 15px;
         box-sizing: border-box;
     }
 
-    /* NEWS & CONTACT ページ調整 */
+    /* NEWS & CONTACT */
     .news-contents {
         flex-direction: column;
         gap: 0;
@@ -411,11 +490,9 @@ footer p {
         order: 3;
         margin-top: 50px;
     }
-    
-    /* Post Info (スマホ用) */
     .post-title {
         font-size: 1.4rem;
-        margin-left: 90px; /* 日付アイコンとの距離調整 */
+        margin-left: 90px;
     }
     .post-cat {
         margin-left: 90px;
@@ -428,5 +505,24 @@ footer p {
     .post-date span {
         font-size: 0.8rem;
         padding-top: 2px;
+    }
+
+    /* RECRUITページ スマホ対応 (ここを追加) */
+    #recruit-hero {
+        height: 300px; /* 高さを少し低く */
+    }
+    /* 3列カードを1列に */
+    .recruit-card {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    /* スケジュール表を縦並びに */
+    .recruit-schedule dt, .recruit-schedule dd {
+        width: 100%;
+        display: block;
+    }
+    .recruit-schedule dt {
+        border-bottom: none;
+        background: #f4f4f4;
     }
 }
