@@ -9,6 +9,7 @@ body {
     font-family: "Yu Gothic Medium", "遊ゴシック Medium", "游ゴシック体", "ヒラギノ角ゴ pro W3", sans-serif;
     line-height: 1.7;
     color: #432;
+    margin: 0;
 }
 a {
     text-decoration: none;
@@ -42,6 +43,8 @@ img {
 .page-header {
     display: flex;
     justify-content: space-between;
+    width: 100%;
+    box-sizing: border-box;
 }
 .wrapper {
     max-width: 1100px;
@@ -67,6 +70,7 @@ img {
     font-family: 'Philosopher', serif;
     text-transform: uppercase;
     font-weight: normal;
+    margin: 0; /* 強制的な位置調整を削除 */
 }
 
 /* ボタン */
@@ -134,21 +138,30 @@ img {
     max-width: 500px;
 }
 
-/* NEWS
+/* NEWS & CONTACT HEADER (修正箇所)
 ------------------------------*/
 #news {
     background-image: url(../images/yaki.jpg), linear-gradient(#ffffff, #444444);
     height: 270px;
     margin-bottom: 40px;
     background-blend-mode: overlay;
+    
+    /* Flexboxでレイアウト崩れを防止 */
+    display: flex;
+    flex-direction: column;
+}
+/* タイトルをエリアの真ん中に配置 */
+#news > .wrapper {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 #news .page-title {
     text-align: center;
-    margin-bottom: 100px;
+    margin-bottom: 20px; /* 少し上に調整 */
 }
-.page-title {
-    margin-top: -80px;
-}
+
 
 /* 記事部分 */
 article {
@@ -242,6 +255,23 @@ aside {
     padding: 12px 10px;
 }
 
+/* ローディングアニメーション (Contact用) */
+.loader {
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #0bd;
+    border-radius: 50%;
+    width: 1em;
+    height: 1em;
+    animation: spin 1s linear infinite;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
 /*フッター
 ------------------*/
 footer {
@@ -301,16 +331,22 @@ footer p {
         margin-top: 100px;
     }
 
-    /* NEWS */
+    /* NEWS & CONTACT (スマホ調整) */
+    #news {
+        height: auto; /* 高さを自動に */
+        min-height: 250px;
+        padding-bottom: 20px;
+    }
     #news .page-title {
         font-size: 2.5rem;
         color: #ffffff;
-        margin-top: 30px;
+        margin-top: 10px;
+        margin-bottom: 10px;
     }
     #news .main-nav {
         color: #ffffff;
         font-size: 1rem;
-        margin-top: -25px;
+        margin-top: 0;
     }
     #news .main-nav a {
         color: #ffffff;
