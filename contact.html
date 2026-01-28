@@ -10,6 +10,7 @@
         <link rel="icon" type="image/png" href="images/favicon.png">
         
         <style>
+            /* ローディングアイコン */
             .loader {
                 border: 3px solid #f3f3f3;
                 border-top: 3px solid #0bd;
@@ -25,6 +26,13 @@
                 0% { transform: rotate(0deg); }
                 100% { transform: rotate(360deg); }
             }
+            /* 画像がはみ出さないように調整 */
+            .post-info img {
+                max-width: 100%;
+                height: auto;
+                display: block; /* 画像の下に余白ができるのを防ぐ */
+                margin-bottom: 20px; /* 画像の下に余白を追加 */
+            }
         </style>
     </head>
 
@@ -37,6 +45,7 @@
                         <li><a href="index.html">Home</a></li>
                         <li><a href="recruit.html">Recruit</a></li>
                         <li><a href="news.html">News</a></li>
+                        <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </nav>
                 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -86,7 +95,7 @@
             </aside>
 
             <div class="ad">
-                <img src="images/banner.png" alt="新メンバー募集中">
+                <a href="recruit.html"><img src="images/banner.png" alt="新メンバー募集中"></a>
             </div>
         </div>
 
@@ -103,49 +112,29 @@
             fetch(sheetUrl)
                 .then(response => response.text())
                 .then(data => {
-                    // CSVを行ごとに分割
                     const rows = data.split('\n').map(row => row.split(','));
-                    
                     const listContainer = document.getElementById('meeting-list');
-                    
-                    // 読み込み完了したら中身をクリア
                     listContainer.innerHTML = '';
 
-                    // 4行目(index 3) から 14行目(index 13) までループ処理
-                    // ※スプレッドシートの行番号 - 1 = index番号
                     for (let i = 3; i <= 13; i++) {
-                        // データが存在しない行はスキップ
                         if (!rows[i]) continue;
-
-                        // C列はindex 2 (チェックボックス: TRUE/FALSE)
-                        // D列はindex 3 (表示テキスト)
                         const isChecked = rows[i][2] && rows[i][2].trim().toUpperCase() === 'TRUE';
                         const text = rows[i][3] ? rows[i][3].trim() : '';
 
-                        // テキストが空っぽならリストを作らない
                         if (text === '') continue;
 
-                        // liタグを作成
                         const li = document.createElement('li');
                         li.textContent = text;
                         li.style.marginBottom = '10px';
                         li.style.paddingLeft = '1em';
                         li.style.textIndent = '-1em';
 
-                        // 【条件1】C列にチェックがあれば太文字
                         if (isChecked) {
                             li.style.fontWeight = 'bold';
                         }
-
-                        // 【条件2】11行目(index 10) 〜 13行目(index 12) は赤文字
                         if (i >= 10 && i <= 12) {
-                            li.style.color = '#d00'; // 赤色
-                            
-                            // もし太文字じゃない場合でも、赤字なら目立つように少し太くする等の調整はお好みで
-                            // li.style.fontWeight = 'bold'; 
+                            li.style.color = '#d00';
                         }
-
-                        // リストに追加
                         listContainer.appendChild(li);
                     }
                 })
