@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <title>Contact - タイ志を、まとえ。</title>
+        <meta name="description" content="情報学部の模擬店団体「タイ志を、まとえ。」へのお問い合わせ">
+        <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
+        <link href="https://fonts.googleapis.com/css?family=Philosopher" rel="stylesheet">
+        <link href="css/style.css" rel="stylesheet">
+        <link rel="icon" type="image/png" href="images/favicon.png">
+        
+        <style>
+            .loader {
+                border: 3px solid #f3f3f3;
+                border-top: 3px solid #0bd;
+                border-radius: 50%;
+                width: 1em;
+                height: 1em;
+                animation: spin 1s linear infinite;
+                display: inline-block;
+                vertical-align: middle;
+                margin-right: 10px;
+            }
+            @keyframes spin {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+            }
+        </style>
+    </head>
+
+    <body>
+        <div id="news" class="big-bg">
+            <header class="page-header wrapper">
+                <h1><a href="index.html"><img class="logo" src="images/ロゴ透過.png" alt="タイ志を、まとえ。"></a></h1>
+                <nav>
+                    <ul class="main-nav">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="recruit.html">Recruit</a></li>
+                        <li><a href="news.html">News</a></li>
+                    </ul>
+                </nav>
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+            </header>
+
+            <div class="wrapper">
+                <h2 class="page-title">Contact</h2>
+            </div>
+        </div>
+        
+        <div class="news-contents wrapper">
+            <article>
+                <header class="post-info">
+                    <img src="images/contactex.png" alt="ミーティングの様子">
+                </header>
+                <p style="font-weight: bold; font-size: 1.1em; margin-bottom: 1em;">
+                    見学・入部希望者向けミーティング
+                </p>
+                <p>
+                    現在は以下の日程で定例会議を行っています。<br>
+                    事前の連絡なしで覗きに来ていただいても構いません！
+                </p>
+                
+                <ul id="meeting-list" style="background: #f4f4f4; padding: 20px; border-radius: 5px; list-style: none; margin-bottom: 30px;">
+                    <li style="padding: 10px;"><span class="loader"></span>読み込み中...</li>
+                </ul>
+
+                <p>
+                    その他、質問やコラボ依頼などは以下のフォームよりお気軽にお問い合わせください。
+                </p>
+
+                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSdFjF3ml49qO8sjCtJkkWk1GCxpYzreMwq6mkhCSsNJKPD9bA/viewform?embedded=true" width="100%" height="1684" frameborder="0" marginheight="0" marginwidth="0">読み込んでいます…</iframe>
+            </article>
+
+            <aside>
+                <h3 class="sub-title">メニュー</h3>
+                <ul class="sub-menu">
+                    <li><a href="recruit.html">新歓情報</a></li>
+                    <li><a href="activities.html">活動記録</a></li>
+                    <li><a href="news.html">ニュース一覧</a></li>
+                    <li><a href="contact.html">お問い合わせ</a></li>
+                </ul>
+                <h3 class="sub-title">このお店について</h3>
+                <p>
+                    「タイ志を、まとえ。」は、情報学部の学生だけで構成された模擬店運営チームです。ITとたい焼きの融合を目指しています。
+                </p>
+            </aside>
+
+            <div class="ad">
+                <img src="images/banner.png" alt="新メンバー募集中">
+            </div>
+        </div>
+
+        <footer>
+            <div class="wrapper">
+                <p><small>&copy; 2025 タイ志を、まとえ。</small></p>
+            </div>
+        </footer>
+
+        <script>
+            // あなたのGoogleスプレッドシートCSV URL
+            const sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vS1Fb8RzmdXe2qcznzzYbsYZ5uJLFuwE-BH7zk4jspvbajB8WL8cLa7Ikbbmv1aO_HqNrbnDrsb1tSy/pub?gid=0&single=true&output=csv';
+
+            fetch(sheetUrl)
+                .then(response => response.text())
+                .then(data => {
+                    // CSVを行ごとに分割
+                    const rows = data.split('\n').map(row => row.split(','));
+                    
+                    const listContainer = document.getElementById('meeting-list');
+                    
+                    // 読み込み完了したら中身をクリア
+                    listContainer.innerHTML = '';
+
+                    // 4行目(index 3) から 14行目(index 13) までループ処理
+                    // ※スプレッドシートの行番号 - 1 = index番号
+                    for (let i = 3; i <= 13; i++) {
+                        // データが存在しない行はスキップ
+                        if (!rows[i]) continue;
+
+                        // C列はindex 2 (チェックボックス: TRUE/FALSE)
+                        // D列はindex 3 (表示テキスト)
+                        const isChecked = rows[i][2] && rows[i][2].trim().toUpperCase() === 'TRUE';
+                        const text = rows[i][3] ? rows[i][3].trim() : '';
+
+                        // テキストが空っぽならリストを作らない
+                        if (text === '') continue;
+
+                        // liタグを作成
+                        const li = document.createElement('li');
+                        li.textContent = text;
+                        li.style.marginBottom = '10px';
+                        li.style.paddingLeft = '1em';
+                        li.style.textIndent = '-1em';
+
+                        // 【条件1】C列にチェックがあれば太文字
+                        if (isChecked) {
+                            li.style.fontWeight = 'bold';
+                        }
+
+                        // 【条件2】11行目(index 10) 〜 13行目(index 12) は赤文字
+                        if (i >= 10 && i <= 12) {
+                            li.style.color = '#d00'; // 赤色
+                            
+                            // もし太文字じゃない場合でも、赤字なら目立つように少し太くする等の調整はお好みで
+                            // li.style.fontWeight = 'bold'; 
+                        }
+
+                        // リストに追加
+                        listContainer.appendChild(li);
+                    }
+                })
+                .catch(error => {
+                    console.error('スプレッドシートの読み込みに失敗しました:', error);
+                    const listContainer = document.getElementById('meeting-list');
+                    listContainer.innerHTML = '<li style="color:red;">情報の取得に失敗しました。</li>';
+                });
+        </script>
+    </body>
+</html>
